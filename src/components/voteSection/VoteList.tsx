@@ -1,6 +1,6 @@
 import { FC, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { THUMBS } from "../../constants/types/People";
+import { THUMBS } from "../../utils/types/People";
 import { voteNow } from "../../store/people/peopleSlice";
 import { RootState } from "../../store/store";
 import PersonCard from "./PersonCard";

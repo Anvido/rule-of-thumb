@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { IVotes } from "../../constants/types/People";
+import { IVotes } from "../../utils/types/People";
 import thumbUp from "../../assets/img/thumbs-up.svg";
 import thumbDown from "../../assets/img/thumbs-down.svg";
 

@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { IPerson, THUMBS } from "../../constants/types/People";
+import { IPerson, THUMBS } from "../../utils/types/People";
 import { formatDistanceStrict } from "date-fns";
 import thumbUp from "../../assets/img/thumbs-up.svg";
 import thumbDown from "../../assets/img/thumbs-down.svg";
