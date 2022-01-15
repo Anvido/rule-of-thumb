@@ -1,4 +1,5 @@
 export interface IPerson {
+  id: number;
   name: string;
   description: string;
   category: string;
@@ -14,4 +15,9 @@ export interface IVotes {
 
 export interface IPeopleState {
   people: IPerson[];
+}
+
+export enum THUMBS {
+  UP = "UP",
+  DOWN = "DOWN",
 }
