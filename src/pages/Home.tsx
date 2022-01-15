@@ -3,7 +3,7 @@ import { FC } from "react";
 import HomeHeader from "../components/home/HomeHeader";
 import BannerBottom from "../components/home/BannerBottom";
 import BannerTop from "../components/home/BannerTop";
-import VoteSection from "../components/voteSection/VoteSection";
+import VoteList from "../components/voteSection/VoteList";
 
 const Home: FC = () => {
   return (
@@ -12,7 +12,7 @@ const Home: FC = () => {
       <div className="max-centered">
         <BannerTop />
         <main role="main">
-          <VoteSection />
+          <VoteList />
         </main>
         <BannerBottom />
       </div>
