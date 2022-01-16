@@ -1,13 +1,22 @@
-import { FC, useCallback } from "react";
+import { FC, useCallback, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { THUMBS } from "../../utils/types/People";
 import { voteNow } from "../../store/people/peopleSlice";
 import { RootState } from "../../store/store";
 import PersonCard from "./PersonCard";
+import Select from "react-select";
+
+const options = [
+  { value: "list", label: "List" },
+  { value: "grid", label: "Grid" },
+];
 
 const VoteSection: FC = () => {
   const people = useSelector((state: RootState) => state.people.people);
   const dispatch = useDispatch();
+
+  const [viewMode, setViewMode] = useState(options[0]);
+  const overlay = useRef<HTMLElement>(document.getElementById("overlay"));
 
   const handleVote = useCallback(
     (id: number, thumb: THUMBS) => {
@@ -18,8 +27,23 @@ const VoteSection: FC = () => {
 
   return (
     <>
-      <h2>Previous Rulings</h2>
-      <ul className="people-list">
+      <div className="vote-header">
+        <h2>Previous Rulings</h2>
+        <Select
+          className="custom-select-container"
+          classNamePrefix="custom-select"
+          onChange={(newValue) => {
+            setViewMode(newValue!);
+          }}
+          value={viewMode}
+          options={options}
+          menuPortalTarget={overlay.current}
+          isSearchable={false}
+        />
+      </div>
+      <ul
+        className={`vote-list ${viewMode.value === "list" ? "list-mode" : ""}`}
+      >
         {people &&
           people.length > 0 &&
           people.map((person) => (
