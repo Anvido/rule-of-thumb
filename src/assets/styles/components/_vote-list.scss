@@ -14,13 +14,6 @@
       margin-right: 0;
     }
 
-    &__image {
-      position: absolute;
-      width: 100%;
-      top: 0;
-      left: 0;
-    }
-
     &__content {
       padding: 0 3rem 3rem;
       display: flex;
@@ -29,11 +22,6 @@
       color: $color-white;
       z-index: 1;
       bottom: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(black, 0.0001) 0%,
-        $color-darker-background 100%
-      );
 
       .content__info {
         h3 {
@@ -174,29 +162,25 @@
         height: 11rem;
         margin-bottom: 1.5rem;
 
-        &__image {
-          width: auto;
-          height: 100%;
-        }
-
         &__content {
           width: 94%;
           height: 100%;
           box-sizing: border-box;
-          padding: 0.5rem 0.5rem 2.5rem 5rem;
+          padding: 0.5rem 0.5rem 2.5rem 9rem;
           right: 0;
           flex-direction: row;
           justify-content: flex-end;
-          background: linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.0001) 0%,
-            #888888 10%,
-            #666666 50%,
-            rgba(51, 51, 51, 0.6) 71.88%
-          );
 
           .content__info {
             margin-right: 2rem;
+            overflow: hidden;
+
+            h3 {
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+            }
+
             p {
               font-size: 1rem;
             }
@@ -312,15 +296,6 @@
         margin-bottom: 1.5rem;
 
         &__content {
-          padding: 0.5rem 0.5rem 3rem 5rem;
-          background: linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.0001) 0%,
-            #888888 10%,
-            #666666 50%,
-            rgba(51, 51, 51, 0.6) 71.88%
-          );
-
           .content__info {
             h3 {
               font-size: 2rem;

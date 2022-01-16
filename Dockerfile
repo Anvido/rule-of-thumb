@@ -1,5 +1,5 @@
 # Config taked from https://rsbh.dev/blog/dockerize-react-app
-FROM node:14-alpine AS builder
+FROM node:16-alpine AS builder
 WORKDIR /app
 # COPY package.json ./
 # RUN npm install

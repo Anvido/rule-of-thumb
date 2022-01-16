@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { CSSProperties, FC, useEffect, useState } from "react";
 import { IPerson, THUMBS } from "../../utils/types/People";
 import { formatDistanceStrict } from "date-fns";
 import thumbUp from "../../assets/img/thumbs-up.svg";
@@ -7,6 +7,7 @@ import VoteStatusBar from "./VoteStatusBar";
 
 interface PersonCardProps extends IPerson {
   onVote: (id: number, thumb: THUMBS) => void;
+  viewMode: string;
 }
 
 const PersonCard: FC<PersonCardProps> = ({
@@ -18,6 +19,7 @@ const PersonCard: FC<PersonCardProps> = ({
   lastUpdated,
   votes,
   onVote,
+  viewMode,
 }) => {
   const [selectedThumb, setSelectedThumb] = useState<THUMBS | null>(null);
   const [sendVote, setSendVote] = useState(false);
@@ -42,13 +44,21 @@ const PersonCard: FC<PersonCardProps> = ({
     outline: "2px solid white",
   };
 
+  let bgStyle: CSSProperties = {
+    background: `linear-gradient(180deg, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.6) 50%), url(assets/img/${picture}) no-repeat`,
+    backgroundSize: "cover",
+  };
+
+  if (viewMode === "list") {
+    bgStyle = {
+      background: `linear-gradient(90deg, rgba(0, 0, 0, 0) 8%, rgb(136, 136, 136) 21.79%, rgb(102, 102, 102) 52%, rgba(51, 51, 51, 0.6) 70.88%) , url(assets/img/${picture}) no-repeat`,
+      backgroundPosition: "center center, left center",
+      backgroundSize: "100% 100%, 22%",
+    };
+  }
+
   return (
-    <li className="person-card">
-      <img
-        className="person-card__image"
-        src={`assets/img/${picture}`}
-        alt={name}
-      />
+    <li className="person-card" style={bgStyle}>
       {votes.positive >= votes.negative && (
         <img
           className="person-card__thumb--positive"

@@ -1,14 +1,15 @@
-import { FC, useCallback, useRef, useState } from "react";
+import { FC, useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { THUMBS } from "../../utils/types/People";
 import { voteNow } from "../../store/people/peopleSlice";
 import { RootState } from "../../store/store";
 import PersonCard from "./PersonCard";
 import Select from "react-select";
+import useDevice from "../../hooks/useDevice";
 
 const options = [
-  { value: "list", label: "List" },
   { value: "grid", label: "Grid" },
+  { value: "list", label: "List" },
 ];
 
 const VoteSection: FC = () => {
@@ -17,6 +18,13 @@ const VoteSection: FC = () => {
 
   const [viewMode, setViewMode] = useState(options[0]);
   const overlay = useRef<HTMLElement>(document.getElementById("overlay"));
+  const { isMobile } = useDevice();
+
+  useEffect(() => {
+    if (isMobile) {
+      setViewMode(options[0]);
+    }
+  }, [isMobile]);
 
   const handleVote = useCallback(
     (id: number, thumb: THUMBS) => {
@@ -47,7 +55,12 @@ const VoteSection: FC = () => {
         {people &&
           people.length > 0 &&
           people.map((person) => (
-            <PersonCard key={person.id} {...person} onVote={handleVote} />
+            <PersonCard
+              key={person.id}
+              {...person}
+              onVote={handleVote}
+              viewMode={viewMode.value}
+            />
           ))}
       </ul>
     </>
