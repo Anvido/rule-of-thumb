@@ -42,7 +42,7 @@ To run dev settings
 
 ```sh
 cd rule-of-thumb
-docker build -f Dockerfile.dev -t react-dev
+docker build -f Dockerfile.dev -t react-dev .
 docker run -p 3000:3000 react-dev
 ```
 
